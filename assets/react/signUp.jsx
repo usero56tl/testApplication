@@ -77,7 +77,7 @@ var ContentModal = React.createClass({
     }
     else{
       return (
-       <SignUpForm url='/User/signup'/>
+       <SignUpForm url='/user/signup'/>
        );
     }          
   }

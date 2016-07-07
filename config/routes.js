@@ -31,8 +31,12 @@ module.exports.routes = {
     view: 'homepage'
   },
 
+  /*************************************************************
+  * JSON API ENDPOINTS                                         *
+  *************************************************************/
 
-  // Custom routes here...
+  'GET /user/signup': 'UserController.signup',
+
 
 
   // If a request to a URL doesn't match any of the custom routes above,
