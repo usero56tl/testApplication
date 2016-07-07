@@ -11,7 +11,7 @@ module.exports = function(req, res, next) {
 
   // User is allowed, proceed to the next policy, 
   // or if this is the last policy, the controller
-  if (req.session.User){
+  /*if (req.session.User){
     return next();
   }
 
@@ -19,5 +19,7 @@ module.exports = function(req, res, next) {
   else {
   	res.redirect('/login');
       return;  
-  }
+  }*/
+
+  return next();
 };

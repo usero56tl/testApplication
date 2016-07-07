@@ -27,6 +27,8 @@
     "install": "^0.8.1",
     "keymaster": "~1.6.2",
     "keymirror": "~0.1.1",
+    "machinepack-emailaddresses": "^0.4.0",
+    "machinepack-passwords": "^2.3.0",
     "npm": "^3.10.3",
     "object-assign": "^2.0.0",
     "rc": "~0.3.3",
