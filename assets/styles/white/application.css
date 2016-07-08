@@ -531,7 +531,7 @@ Pop Up
     color: #5358ef;
 }
 
-.messageContentModal{
+.message-content-modal{
     opacity: 0.65;
     font-family: 'Helvetica Neue';
     font-size: 18px;
@@ -550,7 +550,11 @@ Pop Up
     cursor: pointer;
 }
 
-
+.message-error-modal{
+    font-family: .HelveticaNeueDeskInterface-Italic;
+    font-size: 14px;
+    color: #ed3d53;
+}
 
 
 

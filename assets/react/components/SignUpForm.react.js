@@ -60,7 +60,7 @@ var SignUpForm = React.createClass({
   render: function() {
     return (
       <div>
-      <p className="errorMessage">{this.state.errorMessage}</p>
+      <p className="message-error-modal">{this.state.errorMessage}</p>
       <form className="signUpForm" onSubmit={this.handleSubmit} role="form">
                 <div className="row">
                         <div className="col-md-6">
