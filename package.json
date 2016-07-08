@@ -29,6 +29,7 @@
     "keymirror": "~0.1.1",
     "machinepack-emailaddresses": "^0.4.0",
     "machinepack-passwords": "^2.3.0",
+    "mandrill-api": "^1.0.45",
     "npm": "^3.10.3",
     "object-assign": "^2.0.0",
     "rc": "~0.3.3",

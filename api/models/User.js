@@ -39,9 +39,13 @@
       type: 'boolean',
       required: true,
       defaultsTo: false
+    },
+    accountActivationCode:{
+      type: 'string',
+      required: false
     }
   },
-  //d
+  
 
   toJSON: function() {
     var obj = this.toObject();

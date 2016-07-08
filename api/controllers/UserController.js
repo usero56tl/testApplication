@@ -6,20 +6,20 @@
  */
 
 
-var Emailaddresses = require('machinepack-emailaddresses');
-var Passwords = require('machinepack-passwords');
-var UserAccountActionCreator = require('../../assets/react/actions/UserAccountActionCreator');
+ var Emailaddresses = require('machinepack-emailaddresses');
+ var Passwords = require('machinepack-passwords');
+ var EmailService = require('../services/EmailService');
+ var UtilsService = require('../services/UtilsService');
+
+ module.exports = {
 
 
-module.exports = {
-	
-
-	signup: function(req, res) {
+   signup: function(req, res) {
 
 
      console.log('hello signup');
 
-    if (_.isUndefined(req.param('email'))) {
+     if (_.isUndefined(req.param('email'))) {
       return res.errorMessage('An email address is required!');
     }
 
@@ -30,7 +30,6 @@ module.exports = {
     if (req.param('password').length < 6) {
       return res.errorMessage('Password must be at least 6 characters!');
     }
-
 
     Emailaddresses.validate({
       string: req.param('email'),
@@ -57,6 +56,8 @@ module.exports = {
 
             var options = {};
 
+            options.accountActivationCode = UtilsService.getRandomCode(5);
+
             options.email = req.param('email');
             options.firstName = req.param('firstName');
             options.lastName = req.param('lastName');
@@ -80,6 +81,8 @@ module.exports = {
               // Log the user in
               req.session.userId = createdUser.id;
               
+              EmailService.sendEmail(createdUser);
+
               return res.json(createdUser.toJSON());
             });
           }
@@ -88,5 +91,10 @@ module.exports = {
     });
 
   },
+
+  activateAccount: function(req, res) {
+    console.log(req);
+    return res.view('homepage');
+  }
 };
 
