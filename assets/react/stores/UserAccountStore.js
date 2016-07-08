@@ -2,18 +2,26 @@ var AppDispatcher = require('../dispatcher/AppDispatcher');
 var EventEmitter = require('events').EventEmitter;
 var assign = require('object-assign');
 var user = null;
+var didSignUp = false;
+var willSignUp = false;
+var willLogIn = false;
 
-
+var Constants = require('../constants/AppConstants');
+var ActionTypes = Constants.ActionTypes;
 
 function setUser(newUser) {
   user = newUser;
 }
 
-function emitChange() {
-  UserAccountStore.emit('change');
+function setDidSignUp(_didSignUp) {
+  didSignUp = _didSignUp;
 }
 
 var UserAccountStore = assign({}, EventEmitter.prototype, {
+  
+  emitChange: function() {
+    UserAccountStore.emit('change');
+  },
 
   addChangeListener: function (callback) {
     this.on('change', callback);
@@ -28,15 +36,23 @@ var UserAccountStore = assign({}, EventEmitter.prototype, {
   }
 });
 
-function handleAction(action) {
-  console.log("UserAccountStore: handleAction");
-  if (action.type === 'signing_up') {
-    setUser(action.user);
-    emitChange();
-  }
-}
 
-UserAccountStore.dispatchToken = AppDispatcher.register(handleAction);
+UserAccountStore.dispatchToken = AppDispatcher.register(function(action) {
+
+  switch(action.type) {
+
+    case ActionTypes.DID_SIGN_UP:
+      console.log('set app section in app store')
+      setUser(action.user);
+      setDidSignUp(true);
+      UserAccountStore.emitChange();
+    break;
+
+    default:
+      // do nothing
+  }
+
+});
 
 module.exports = UserAccountStore;
 
