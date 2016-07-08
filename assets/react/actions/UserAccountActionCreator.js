@@ -4,17 +4,17 @@ var Constants = require('../constants/AppConstants');
 var ActionTypes = Constants.ActionTypes;
 
 
-function signingUp(user) {
-	console.log("UserAccountActionCreators: signingUp");
-	var action = {
-		type: 'signing_up',
-		user: user
-	};
 
-	AppDispatcher.dispatch(action);
-
-}
 
 module.exports = {
-	signingUp: signingUp
+	didSignUp: function (user) {
+		console.log("UserAccountActionCreators: didSignUp");
+		var action = {
+			type: ActionTypes.DID_SIGN_UP,
+			user: user
+		};
+
+		AppDispatcher.dispatch(action);
+
+	}
 };

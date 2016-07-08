@@ -31,8 +31,13 @@ var UserAccountStore = assign({}, EventEmitter.prototype, {
     this.removeListener('change', callback);
   },
 
-  getUser: function () {
-    return user;
+  getUserAccount: function () {
+    return {
+      user:user,
+      didSignUp:didSignUp,
+      willSignUp:willSignUp,
+      willLogIn:willLogIn
+    };
   }
 });
 
