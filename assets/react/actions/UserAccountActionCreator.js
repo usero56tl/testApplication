@@ -1,4 +1,8 @@
 var AppDispatcher = require('../dispatcher/AppDispatcher');
+var Constants = require('../constants/AppConstants');
+
+var ActionTypes = Constants.ActionTypes;
+
 
 function signingUp(user) {
 	console.log("UserAccountActionCreators: signingUp");

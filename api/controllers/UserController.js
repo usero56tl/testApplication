@@ -79,12 +79,8 @@ module.exports = {
 
               // Log the user in
               req.session.userId = createdUser.id;
-
-              UserAccountActionCreator.signingUp(createdUser);
               
-              return res.json({
-                username: createdUser.username
-              });
+              return res.json(createdUser.toJSON());
             });
           }
         });

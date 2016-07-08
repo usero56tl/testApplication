@@ -34,6 +34,7 @@ var SignUpForm = React.createClass({
       success: function(data) {
         console.log("2");
         console.log(data);
+        UserAccountActionCreator.didSignUp();
       }.bind(this),
       error: function(xhr, status, err) {
         console.error(err);
