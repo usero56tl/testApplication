@@ -28,7 +28,7 @@ module.exports.routes = {
   //
   // (Alternatively, remove this and add an `index.html` file in your `assets` directory)
   '/': {
-    view: 'homepage'
+    view: 'landingpage'
   },
 
   /*************************************************************
@@ -36,6 +36,7 @@ module.exports.routes = {
   *************************************************************/
 
   'GET /user/signup': 'UserController.signup',
+  'GET /user/activation/:userid/:accountActivationCode': 'UserController.activateAccount',
 
 
 
