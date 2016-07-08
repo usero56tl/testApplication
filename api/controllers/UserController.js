@@ -8,7 +8,6 @@
 
 var Emailaddresses = require('machinepack-emailaddresses');
 var Passwords = require('machinepack-passwords');
-var UserAccountActionCreator = require('../../assets/react/actions/UserAccountActionCreator');
 
 
 module.exports = {
@@ -80,7 +79,6 @@ module.exports = {
               // Log the user in
               req.session.userId = createdUser.id;
 
-              UserAccountActionCreator.signingUp(createdUser);
               
               return res.json({
                 username: createdUser.username
