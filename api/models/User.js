@@ -16,7 +16,7 @@
     },
     firstName: {
       type: 'string',
-      required: true
+      required: false
     },
     lastName: {
       type: 'string',
@@ -34,6 +34,11 @@
     phone: {
       type: 'string',
       required: false
+    },
+    isEmailConfirmed:{
+      type: 'boolean',
+      required: true,
+      defaultsTo: false
     }
   },
   //d

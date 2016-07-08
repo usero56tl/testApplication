@@ -16,9 +16,7 @@ console.log("hello");
 var InnerModal = React.createClass({
 
   getInitialState: function () {
-    return {
-      isMailSent: false
-    };
+    return UserAccountStore.getUserAccount();
   },
 
   componentDidMount: function () {
@@ -31,15 +29,13 @@ var InnerModal = React.createClass({
 
   onTweetChange: function () {
     console.log("onTweetChange");
-    this.setState({
-      isMailSent: true
-    });
+    this.setState(UserAccountStore.getUserAccount());
   },
 
 
   render: function() {
     var title;
-    if (this.state.isMailSent){
+    if (this.state.didSignUp){
       title = 'Last step';
 
     }
@@ -54,7 +50,7 @@ var InnerModal = React.createClass({
      <div className="row">
      <HeaderModal title={title}/>
      <div className="col-md-8">
-     <ContentModal isMailSent={this.state.isMailSent}/>
+     <ContentModal didSignUp={this.state.didSignUp} user={this.state.user} />
      </div>
      </div>
      </div>
@@ -70,9 +66,9 @@ var ContentModal = React.createClass({
 
   render: function() {
     var title;
-    if (this.props.isMailSent){
+    if (this.props.didSignUp){
       return (
-       <SignUpConfirmation email='ee'/>
+       <SignUpConfirmation email={this.props.user.email}/>
        );
     }
     else{

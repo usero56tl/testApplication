@@ -1,4 +1,5 @@
 var React = require('react');
+var UserAccountActionCreator = require('../actions/UserAccountActionCreator');
 
 
 var SignUpForm = React.createClass({
@@ -34,7 +35,7 @@ var SignUpForm = React.createClass({
       success: function(data) {
         console.log("2");
         console.log(data);
-        UserAccountActionCreator.didSignUp();
+        UserAccountActionCreator.didSignUp(data);
       }.bind(this),
       error: function(xhr, status, err) {
         console.error(err);
