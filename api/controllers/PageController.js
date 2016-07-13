@@ -10,10 +10,7 @@
  	home: function(req, res) {
 
  		if (!req.session.userId) {
- 			return res.view('landingpage', {
- 				me: null,
- 				noMenu: true
- 			});
+ 			return res.view('landingpage');
  		}
 
  		User.findOne(req.session.userId, function(err, user) {
@@ -23,14 +20,12 @@
 
  			if (!user) {
  				sails.log.verbose('Session refers to a user who no longer exists- did you delete a user, then try to refresh the page with an open tab logged-in as that user?');
- 				return res.view('homepage', {
- 					me: null
- 				});
+ 				return res.view('homepage');
  			}
 
  			return res.view('homepage', {
  				me: {
- 					
+ 					"hello":"ds"
  				},
  				showAddTutorialButton: true
  			});
@@ -57,10 +52,7 @@
  			console.log("forgotPassword");
  			console.log(forgotPassword);
 
- 			return res.view('resetPassword', {
- 				me: null,
- 				onlyLogo: true
- 			});
+ 			return res.view('resetPassword');
 
  		});
 

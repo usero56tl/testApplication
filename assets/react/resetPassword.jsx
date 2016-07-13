@@ -3,6 +3,7 @@ ReactDOM = require('react-dom'),
 
 HeaderModal = require('./components/HeaderModal.react'),
 ResetPasswordPostEmailForm = require('./components/ResetPasswordPostEmailForm.react'),
+NavigationLogo = require('./components/NavigationLogo.react'),
 
 UserAccountStore = require('./stores/UserAccountStore'),
 AppDispatcher = require('./dispatcher/AppDispatcher'),
@@ -36,6 +37,8 @@ var InnerModal = React.createClass({
     var title = 'Reset Password';
 
     return (
+      <div>
+      <NavigationLogo/>
      <div className="modal-dialog">
      <div className="modal-content">
      <div className="modal-body">
@@ -43,6 +46,7 @@ var InnerModal = React.createClass({
      <HeaderModal title={title}/>
      <div className="col-md-8">
       <ResetPasswordPostEmailForm url='/user/changePassword'/>
+     </div>
      </div>
      </div>
      </div>

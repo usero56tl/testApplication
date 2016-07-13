@@ -10,15 +10,6 @@ var LogInForm = React.createClass({
     };
   },
 
-  handleSubmit: function(e) {
-    e.preventDefault();
-    var email = this.props.email;
-    this.onUserResettingPassword({
-      email:email
-    })
-    return false;
-  },
-
   onUserResettingPassword: function(user) {
     console.log(user);
     $.ajax({
@@ -52,9 +43,6 @@ var LogInForm = React.createClass({
       <p className="message-content-modal">We sent you a new email with a link to reset your password at {this.props.email}.</p>
       <p className="message-content-modal">Make sure to check your spam box in case it got filtered.</p>
       <p className="message-content-modal">If you still have not received it, please contact support@captionapp.co.</p>
-      <form className="signUpForm" onSubmit={this.handleSubmit} role="form">
-          <button type="submit" value="Submit">RESEND EMAIL</button>
-      </form>
       </div>
     );
   }
