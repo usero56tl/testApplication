@@ -5,21 +5,17 @@
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
 
-var ServerConstants = require('../constants/ServerConstants');
-var UserService = require('../services/UserService');
+ var ServerConstants = require('../constants/ServerConstants');
+ var UserService = require('../services/UserService');
 
  module.exports = {
 
-  sendEmail: function(userTo) {
+  sendEmail: function(userTo, whichTemplate, data) {
 
     var mandrill = require('mandrill-api/mandrill');
     var mandrill_client = new mandrill.Mandrill('YzjmMyB0xFU55ADogBFB8A');
-
-    var template_name = "Activation Email Template";
-    var template_content = [{
-      "name": "subject",
-      "content": "Activate your account"
-    },
+    var template_name;
+    var template_content = [
     {
       "name": "fname",
       "content": userTo.firstName
@@ -31,12 +27,40 @@ var UserService = require('../services/UserService');
     {
       "name": "current_year",
       "content": "2016"
-    },
-    {
-      "name": "activationurl",
-      "content": UserService.getAccountActivationUrl(userTo)
     }
     ];
+
+
+    switch(whichTemplate){
+      case ServerConstants.TEMPLATE_MAIL.CONFIRMATION:
+      template_name = "Activation Email Template";
+      template_content.push({
+        "name": "subject",
+        "content": "Activate your Caption account"
+      });
+      template_content.push({
+        "name": "activationurl",
+        "content": UserService.getAccountActivationUrl(userTo)
+      });
+      break;
+
+      case ServerConstants.TEMPLATE_MAIL.RESET_PASSWORD:
+      template_name = "Password Reset Email Template";
+      template_content.push({
+        "name": "subject",
+        "content": "Reset your Caption password"
+      });
+      template_content.push({
+        "name": "activationurl",
+        "content": UserService.getResetPasswordUrl(data)
+      });
+      break;
+
+      default:
+      break;
+    }
+
+    
     var message = {
       "html": "<p>Example HTML content</p>",
       "text": "Example text content",
@@ -79,26 +103,19 @@ var UserService = require('../services/UserService');
         "values": {
           "user_id": 123456
         }
-      }],
+      }]
       
     };
     var async = false;
     var ip_pool = "Main Pool";
     var send_at = "2015-12-12 23:59:59";
-    mandrill_client.messages.sendTemplate({"template_name": template_name, "template_content": template_content, "message": message, "async": async, "ip_pool": ip_pool, "send_at": send_at}, function(result) {
+    /*mandrill_client.messages.sendTemplate({"template_name": template_name, "template_content": template_content, "message": message, "async": async, "ip_pool": ip_pool, "send_at": send_at}, function(result) {
       console.log(result);
-    /*
-    [{
-            "email": "recipient.email@example.com",
-            "status": "sent",
-            "reject_reason": "hard-bounce",
-            "_id": "abc123abc123abc123abc123abc123"
-        }]
-        */
+    
       }, function(e) {
     // Mandrill returns the error as an object with name and message keys
     console.log('A mandrill error occurred: ' + e.name + ' - ' + e.message);
     // A mandrill error occurred: Unknown_Subaccount - No subaccount exists with the id 'customer-123'
-  });
+  });*/
   }
 };

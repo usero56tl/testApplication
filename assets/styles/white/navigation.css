@@ -1,0 +1,12 @@
+.image-logo{
+	width: 141px;
+	height: 35px;
+	display: inline-block;
+    vertical-align: middle;
+    float: none;
+}
+
+.navbar-default{
+	height: 80px;
+	background-color: red;
+}
