@@ -11,6 +11,7 @@ module.exports = {
     WILL_LOG_IN: null,
     DID_FORGET_PASSWORD: null,
     DID_SEND_EMAIL_PASSWORD: null,
+    DID_RESEND_EMAIL_PASSWORD: null,
     DID_RESEND_EMAIL_CONFIRMATION_ACCOUNT:null
 
 

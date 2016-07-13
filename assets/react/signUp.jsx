@@ -61,7 +61,7 @@ var InnerModal = React.createClass({
      <div className="row">
      <HeaderModal title={title}/>
      <div className="col-md-8">
-     <ContentModal didResendEmailConfirmationAccount={this.state.didResendEmailConfirmationAccount} didSignUp={this.state.didSignUp} didSendEmailPassword={this.state.didSendEmailPassword} didForgetPassword={this.state.didForgetPassword} willLogIn={this.state.willLogIn} willSignUp={this.state.willSignUp} user={this.state.user} />
+     <ContentModal didResendEmailPassword={this.state.didResendEmailPassword} didResendEmailConfirmationAccount={this.state.didResendEmailConfirmationAccount} didSignUp={this.state.didSignUp} didSendEmailPassword={this.state.didSendEmailPassword} didForgetPassword={this.state.didForgetPassword} willLogIn={this.state.willLogIn} willSignUp={this.state.willSignUp} user={this.state.user} />
      </div>
      </div>
      </div>
@@ -99,7 +99,7 @@ var ContentModal = React.createClass({
     }
     else if(this.props.didSendEmailPassword){
       return (
-        <ResetPasswordPreEmailDidSendForm email={this.props.user.email} url='/user/resetpasswordpre'/>
+        <ResetPasswordPreEmailDidSendForm didResendEmailPassword={this.props.didResendEmailPassword} email={this.props.user.email} url='/user/resetpasswordpre'/>
        );
     }
     else{

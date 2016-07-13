@@ -30,41 +30,9 @@
     }
     ];
 
-
-    switch(whichTemplate){
-      case ServerConstants.TEMPLATE_MAIL.CONFIRMATION:
-      template_name = "Activation Email Template";
-      template_content.push({
-        "name": "subject",
-        "content": "Activate your Caption account"
-      });
-      template_content.push({
-        "name": "activationurl",
-        "content": UserService.getAccountActivationUrl(userTo)
-      });
-      break;
-
-      case ServerConstants.TEMPLATE_MAIL.RESET_PASSWORD:
-      template_name = "Password Reset Email Template";
-      template_content.push({
-        "name": "subject",
-        "content": "Reset your Caption password"
-      });
-      template_content.push({
-        "name": "activationurl",
-        "content": UserService.getResetPasswordUrl(data)
-      });
-      break;
-
-      default:
-      break;
-    }
-
-    
     var message = {
       "html": "<p>Example HTML content</p>",
       "text": "Example text content",
-      "subject": "Activate your account",
       "from_email": ServerConstants.EMAIL.SENDER,
       "from_name": "Tristan",
       "to": [{
@@ -106,16 +74,51 @@
       }]
       
     };
+
+
+    switch(whichTemplate){
+      case ServerConstants.TEMPLATE_MAIL.CONFIRMATION:
+      template_name = "Activation Email Template";
+      template_content.push({
+        "name": "subject",
+        "content": "Activate your Caption account"
+      });
+      template_content.push({
+        "name": "activationurl",
+        "content": UserService.getAccountActivationUrl(userTo)
+      });
+      message["subject"] = "Activate your Caption account";
+      break;
+
+      case ServerConstants.TEMPLATE_MAIL.RESET_PASSWORD:
+      template_name = "Password Reset Email Template";
+      template_content.push({
+        "name": "subject",
+        "content": "Reset your Caption password"
+      });
+      template_content.push({
+        "name": "activationurl",
+        "content": UserService.getResetPasswordUrl(data)
+      });
+      message["subject"] = "Reset your Caption password";
+      break;
+
+      default:
+      break;
+    }
+
+    
+    
     var async = false;
     var ip_pool = "Main Pool";
     var send_at = "2015-12-12 23:59:59";
-    /*mandrill_client.messages.sendTemplate({"template_name": template_name, "template_content": template_content, "message": message, "async": async, "ip_pool": ip_pool, "send_at": send_at}, function(result) {
+    mandrill_client.messages.sendTemplate({"template_name": template_name, "template_content": template_content, "message": message, "async": async, "ip_pool": ip_pool, "send_at": send_at}, function(result) {
       console.log(result);
     
       }, function(e) {
     // Mandrill returns the error as an object with name and message keys
     console.log('A mandrill error occurred: ' + e.name + ' - ' + e.message);
     // A mandrill error occurred: Unknown_Subaccount - No subaccount exists with the id 'customer-123'
-  });*/
+  });
   }
 };

@@ -7,6 +7,7 @@ var willSignUp = false;
 var willLogIn = false;
 var didForgetPassword = false;
 var didSendEmailPassword = false;
+var didResendEmailPassword = false;
 var didResendEmailConfirmationAccount = false;
 
 var Constants = require('../constants/AppConstants');
@@ -18,6 +19,7 @@ function initBoolean() {
   willLogIn = false;
   didForgetPassword = false;
   didSendEmailPassword = false;
+  didResendEmailPassword = false;
   didResendEmailConfirmationAccount = false;
 }
 
@@ -39,6 +41,10 @@ function setWillLogIn(_willLogIn) {
 
 function setDidSendEmailPassword(_didSendEmailPassword) {
   didSendEmailPassword = _didSendEmailPassword;
+}
+
+function setDidResendEmailPassword(_didResendEmailPassword) {
+  didResendEmailPassword = _didResendEmailPassword;
 }
 
 function setDidForgetPassword(_didForgetPassword) {
@@ -71,6 +77,7 @@ var UserAccountStore = assign({}, EventEmitter.prototype, {
       willLogIn:willLogIn,
       didForgetPassword:didForgetPassword,
       didSendEmailPassword: didSendEmailPassword,
+      didResendEmailPassword: didResendEmailPassword,
       didResendEmailConfirmationAccount: didResendEmailConfirmationAccount
     };
   }
@@ -110,6 +117,14 @@ UserAccountStore.dispatchToken = AppDispatcher.register(function(action) {
       setUser(action.user);
       initBoolean();
       setDidSendEmailPassword(true);
+      UserAccountStore.emitChange();
+    break;
+
+    case ActionTypes.DID_RESEND_EMAIL_PASSWORD:
+      setUser(action.user);
+      initBoolean();
+      setDidSendEmailPassword(true);
+      setDidResendEmailPassword(true);
       UserAccountStore.emitChange();
     break;
 
