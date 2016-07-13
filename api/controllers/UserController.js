@@ -131,7 +131,9 @@
       console.log("updatedUser");
       console.log(updatedUser);
 
-      return res.view('homepage');
+      req.session.userId = userId;
+
+      return res.redirect('/');
     });
 
   },

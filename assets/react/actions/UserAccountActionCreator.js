@@ -43,6 +43,14 @@ module.exports = {
 		AppDispatcher.dispatch(action);
 	},
 
+	didResendEmailPassword: function (user) {
+		var action = {
+			type: ActionTypes.DID_RESEND_EMAIL_PASSWORD,
+			user: user
+		};
+		AppDispatcher.dispatch(action);
+	},
+
 	didResendEmailConfirmationAccount: function (user) {
 		var action = {
 			type: ActionTypes.DID_RESEND_EMAIL_CONFIRMATION_ACCOUNT,

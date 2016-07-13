@@ -9,6 +9,9 @@
 
  	home: function(req, res) {
 
+ 		console.log("home");
+ 		console.log(req.session);
+
  		if (!req.session.userId) {
  			return res.view('landingpage');
  		}
