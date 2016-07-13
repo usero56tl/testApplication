@@ -15,13 +15,15 @@ module.exports.bootstrap = function(cb) {
   	}
   	if(count > 0) return cb()
   	
-  	User.create([{
+  	/*User.create([{
   		"name":"AVAILabs",
   		"username":"avail",
-		"email":"testuser@availabs.org",
-		"password":"password",
-		"confirmation":"password"
-  	}]).exec(cb);
+		  "email":"testuser@availabs.org",
+		  "password":"password",
+		  "confirmation":"password"
+  	}]).exec(cb);*/
+
+    return cb()
   
   })
 };

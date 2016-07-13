@@ -27,17 +27,30 @@ module.exports.routes = {
   // default view engine) your home page.
   //
   // (Alternatively, remove this and add an `index.html` file in your `assets` directory)
-  '/': {
-    view: 'landingpage'
-  },
+
+  /*************************************************************
+  * Server Rendered HTML Page Endpoints                        *
+  *************************************************************/
+
+  '/': 'PageController.home',
+  'GET /user/resetpasswordpost/:forgotPasswordId/:token': 'PageController.resetPassword',
+
+
 
   /*************************************************************
   * JSON API ENDPOINTS                                         *
   *************************************************************/
 
-  'GET /user/signup': 'UserController.signup',
-  'GET /user/activation/:userid/:accountActivationCode': 'UserController.activateAccount',
+  'POST /user/signup': 'UserController.signup',
+  'GET /user/activation/:userId/:accountActivationCode': 'UserController.activateAccount',
+  'POST /user/login': 'UserController.login',
+  '/user/logout': 'UserController.logout',
+  'POST /user/resendEmailConfirmation': 'UserController.resendEmailConfirmation',
 
+  'POST /user/resetpasswordpre': 'ForgotPasswordController.create',
+  'POST /user/changePassword': 'ForgotPasswordController.changePassword',
+
+  
 
 
   // If a request to a URL doesn't match any of the custom routes above,

@@ -1,17 +1,21 @@
-
-
-
 var React = require('react'),
 ReactDOM = require('react-dom'),
 SignUpForm = require('./components/SignUpForm.react'),
+LogInForm = require('./components/LogInForm.react'),
+ResetPasswordPreEmailForm = require('./components/ResetPasswordPreEmailForm.react'),
+ResetPasswordPreEmailDidSendForm = require('./components/ResetPasswordPreEmailDidSendForm.react'),
 HeaderModal = require('./components/HeaderModal.react'),
+
 SignUpConfirmation = require('./components/SignUpConfirmation.react'),
 
 UserAccountStore = require('./stores/UserAccountStore'),
-AppDispatcher = require('./dispatcher/AppDispatcher');
+AppDispatcher = require('./dispatcher/AppDispatcher'),
+UserAccountActionCreator = require('./actions/UserAccountActionCreator');
 
+/*************************************************************
+SIGN UP
+*************************************************************/
 
-console.log("hello");
 
 var InnerModal = React.createClass({
 
@@ -28,7 +32,6 @@ var InnerModal = React.createClass({
   },
 
   onTweetChange: function () {
-    console.log("onTweetChange");
     this.setState(UserAccountStore.getUserAccount());
   },
 
@@ -37,10 +40,18 @@ var InnerModal = React.createClass({
     var title;
     if (this.state.didSignUp){
       title = 'Last step';
-
     }
-    else{
+    else if (this.state.willSignUp){
       title = 'Sign up';
+    }
+    else if(this.state.willLogIn){
+      title = 'Log in';
+    }
+    else if(this.state.didForgetPassword){
+      title = 'Reset Password';
+    }
+    else if(this.state.didSendEmailPassword){
+      title = 'Reset Password';
     }
 
     return (
@@ -50,7 +61,7 @@ var InnerModal = React.createClass({
      <div className="row">
      <HeaderModal title={title}/>
      <div className="col-md-8">
-     <ContentModal didSignUp={this.state.didSignUp} user={this.state.user} />
+     <ContentModal didResendEmailConfirmationAccount={this.state.didResendEmailConfirmationAccount} didSignUp={this.state.didSignUp} didSendEmailPassword={this.state.didSendEmailPassword} didForgetPassword={this.state.didForgetPassword} willLogIn={this.state.willLogIn} willSignUp={this.state.willSignUp} user={this.state.user} />
      </div>
      </div>
      </div>
@@ -59,31 +70,84 @@ var InnerModal = React.createClass({
      );
   }
 
-      }); //InnerModal
+}); 
 
 
 var ContentModal = React.createClass({
 
   render: function() {
-    var title;
+
     if (this.props.didSignUp){
       return (
-       <SignUpConfirmation email={this.props.user.email}/>
+       <SignUpConfirmation didResendEmailConfirmationAccount={this.props.didResendEmailConfirmationAccount} url='/user/resendEmailConfirmation' email={this.props.user.email}/>
        );
     }
-    else{
+    else if (this.props.willSignUp){
       return (
        <SignUpForm url='/user/signup'/>
        );
+    }
+    else if(this.props.willLogIn){
+      return (
+        <LogInForm url='/user/login'/>
+       );
+    }
+    else if(this.props.didForgetPassword){
+      return (
+        <ResetPasswordPreEmailForm url='/user/resetpasswordpre'/>
+       );
+    }
+    else if(this.props.didSendEmailPassword){
+      return (
+        <ResetPasswordPreEmailDidSendForm email={this.props.user.email} url='/user/resetpasswordpre'/>
+       );
+    }
+    else{
+      return <div>Error</div>
     }          
   }
 
-      }); //ContentModal
+}); 
 
 
 ReactDOM.render(
   <InnerModal/>,
   document.getElementById('signUpModal')
   );
+
+/*************************************************************
+MENU
+*************************************************************/
+
+var MenuContent = React.createClass({
+
+  clickOnLogIn:function() {
+    console.log("clickOnLogIn");
+    UserAccountActionCreator.willLogIn();
+  },
+
+  clickOnSignUp:function() {
+    console.log("clickOnSignUp");
+    UserAccountActionCreator.willSignUp();
+  },
+
+  render: function() {
+    return (
+      <span>
+      <a href="#simplify">FEATURES</a>|
+      <a onClick={this.clickOnLogIn} data-toggle="modal" data-target="#signUpModal" >LOG IN</a>|
+      <a onClick={this.clickOnSignUp} type="button" data-toggle="modal" data-target="#signUpModal" className="selected">Sign up</a>
+      </span>
+      );
+
+  }
+
+}); 
+
+ReactDOM.render(
+  <MenuContent/>,
+  document.getElementById('menuRight')
+  );
+
 
 
