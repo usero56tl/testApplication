@@ -8,7 +8,7 @@ var HeaderModal = React.createClass({
 			<div className="container-fluid">
 			<div className="navbar-header">
 			<a className="navbar-brand" href="/">
-			<img className="image-logo" alt="Caption" src="/images/logo-fresq-full.png"/>
+			<img className="image-logo" alt="Medgo" src=""/>
 			</a>
 			</div>
 			</div>

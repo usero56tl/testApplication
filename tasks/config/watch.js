@@ -12,23 +12,48 @@
  * 		https://github.com/gruntjs/grunt-contrib-watch
  *
  */
+ //https://nehalist.io/livereload-for-sailsjs/
+ 
 module.exports = function(grunt) {
 
 	grunt.config.set('watch', {
-		api: {
+        api: {
+
+            // API files to watch:
+            files: ['api/**/*', '!**/node_modules/**']
+        },
+        assets: {
+
+            // Assets to watch:
+            files: ['assets/**/*', 'tasks/pipeline.js', '!**/node_modules/**'],
+
+            // When assets are changed:
+            tasks: ['syncAssets' , 'linkAssets']
+        },
+        views: {
+            files: ['views/**/*']
+        },
+        options: {
+            livereload: true
+        }
+    });
+
+	//grunt.config.set('watch', {
+		//api: {
 
 			// API files to watch:
-			files: ['api/**/*']
-		},
-		assets: {
+			//files: ['api/**/*', '!**/node_modules/**']
+		//},
+		//assets: {
 
 			// Assets to watch:
-			files: ['assets/**/*', 'tasks/pipeline.js'],
+			//files: ['assets/**/*', 'tasks/pipeline.js', '!**/node_modules/**'],
 
 			// When assets are changed:
-			tasks: ['syncAssets' , 'linkAssets']
-		}
-	});
+			//tasks: ['syncAssets' , 'linkAssets']
+		//}
+	//});
 
 	grunt.loadNpmTasks('grunt-contrib-watch');
 };
+

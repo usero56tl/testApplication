@@ -13,7 +13,7 @@
  */
 
 module.exports = function(grunt) {
-
+ 
 
 	// Load the include-all library in order to require all of our grunt
 	// configurations and task registrations dynamically.
@@ -69,6 +69,7 @@ module.exports = function(grunt) {
 	var taskConfigurations = loadTasks('./tasks/config'),
 		registerDefinitions = loadTasks('./tasks/register');
 
+
 	// (ensure that a default task exists)
 	if (!registerDefinitions.default) {
 		registerDefinitions.default = function (grunt) { grunt.registerTask('default', []); };
@@ -76,6 +77,13 @@ module.exports = function(grunt) {
 
 	// Run task functions to configure Grunt.
 	invokeConfigFn(taskConfigurations);
+	
+	if (process.env.NODE_ENV == 'development') { 
+		console.error("loading dev grunt tasks"); 
+		var devTaskConfigurations = loadTasks('./tasks/config-dev');
+		invokeConfigFn(devTaskConfigurations);
+	}
+
 	invokeConfigFn(registerDefinitions);
 
 };

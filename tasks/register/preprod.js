@@ -1,5 +1,5 @@
 module.exports = function (grunt) {
-	grunt.registerTask('heroku:production', [
+	grunt.registerTask('heroku:preprod', [
 		'compileAssets',
 		'concat',
 		'uglify',
@@ -13,5 +13,5 @@ module.exports = function (grunt) {
 		'sails-linker:devTplJade'
 	]);
 
-	grunt.registerTask('prod',[])
+	grunt.registerTask('preprod',[])
 };
