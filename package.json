@@ -1,7 +1,7 @@
 {
-  "name": "react-es6",
+  "name": "testApplication",
   "version": "0.0.1",
-  "description": "Sails React Boilerplate",
+  "description": "Test",
   "keywords": [],
   "dependencies": {
     "bcrypt": "~0.8.0",
@@ -27,9 +27,6 @@
     "install": "^0.8.1",
     "keymaster": "~1.6.2",
     "keymirror": "~0.1.1",
-    "machinepack-emailaddresses": "^0.4.0",
-    "machinepack-passwords": "^2.3.0",
-    "mandrill-api": "^1.0.45",
     "npm": "^3.10.3",
     "object-assign": "^2.0.0",
     "rc": "~0.3.3",
@@ -41,7 +38,8 @@
     "request": "~2.51.0",
     "requirejs": "~2.1.15",
     "sails": "~0.12.0",
-    "sails-disk": "~0.10.9"
+    "sails-disk": "~0.10.9",
+    "sails-db-migrate": "^1.5.0"
   },
   "scripts": {
     "start": "node app.js",
@@ -50,9 +48,12 @@
   "main": "app.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/alex/react-es6.git"
+    "url": "git://github.com/chrisrydahl/testApplication.git"
   },
-  "author": "Alex Muro",
+  "author": "Christopher Rydahl",
   "license": "MIT",
-  "devDependencies": {}
+  "devDependencies": {
+    "grunt-notify": "0.4.5",
+    "grunt-rename": "^0.1.4"
+  }
 }

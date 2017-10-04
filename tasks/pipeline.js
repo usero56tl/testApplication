@@ -15,7 +15,7 @@
 // (if you're using LESS with the built-in default config, you'll want
 //  to change `assets/styles/importer.less` instead.)
 var cssFilesToInject = [
-  'styles/white/application.css'
+  'styles/**/*.css'
 ];
 
 
@@ -23,16 +23,29 @@ var cssFilesToInject = [
 // (uses Grunt-style wildcard/glob/splat expressions)
 var jsFilesToInject = [
 
-  
-  // Dependencies like sails.io.js, jQuery, or Angular
-  // are brought in here
-  //'js/dependencies/**/*.js',
-  'bower_components/jquery/dist/jquery.js',
-  'bower_components/bootstrap/dist/js/bootstrap.js'
+  // Don't load sails.io.js dependency here
+  // (because we use HTML attributes to configure it)
 
-  // All of the rest of your client-side js files
+  // Inject all of the rest of our dependencies one by one here:
+  'js/dependencies/angular.js',
+  'js/dependencies/jquery.min.js',
+  'js/dependencies/lodash.js',
+  'js/dependencies/angular-toastr.js',
+  'js/dependencies/bootstrap.js',
+  'js/dependencies/compareTo.module.js',
+  'js/dependencies/ui-bootstrap.js',
+  'js/dependencies/ui-bootstrap-tpls.js',
+  'js/dependencies/angular-toastr.tpls.js',
+  'js/dependencies/ng-pattern-restrict.js',
+
+  // Inject our angular module definition file here
+  // so that it's available for our UI controller
+  // scripts below.
+  'js/app.js',
+
+  // All of the rest of our controllers
   // will be injected here in no particular order.
-  //'js/**/*.js'
+  'js/controllers/**/*.js',
 ];
 
 

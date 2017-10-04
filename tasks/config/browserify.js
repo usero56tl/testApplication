@@ -1,9 +1,11 @@
 module.exports = function(grunt) {
 
   grunt.config.set('browserify', {
-    dev: {
+    react: {
       options: {
-        transform:  [ require('grunt-react').browserify ]
+        transform:  [ require('grunt-react').browserify ],
+        debug: true,
+        watch: true
       },
       files: [{
         expand: true,

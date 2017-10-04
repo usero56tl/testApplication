@@ -33,28 +33,12 @@ module.exports.routes = {
   *************************************************************/
 
   '/': 'PageController.home',
-  'GET /user/resetpasswordpost/:forgotPasswordId/:token': 'PageController.resetPassword',
-
-
-
-  /*************************************************************
-  * JSON API ENDPOINTS                                         *
-  *************************************************************/
-
-  'POST /user/signup': 'UserController.signup',
-  'GET /user/activation/:userId/:accountActivationCode': 'UserController.activateAccount',
-  'POST /user/login': 'UserController.login',
-  '/user/logout': 'UserController.logout',
-  'POST /user/resendEmailConfirmation': 'UserController.resendEmailConfirmation',
-
-  'POST /user/resetpasswordpre': 'ForgotPasswordController.create',
-  'POST /user/changePassword': 'ForgotPasswordController.changePassword',
-
-  
 
 
   // If a request to a URL doesn't match any of the custom routes above,
   // it is matched against Sails route blueprints.  See `config/blueprints.js`
   // for configuration options and examples.
+
+  '/saveContactInfo':"ContactInfoController.save",
 
 };
