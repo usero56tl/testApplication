@@ -2,9 +2,6 @@ module.exports = {
 
   URL: {
     
-    WEBSITE: "http://fresq.co/",
-    ACCOUNT_ACTIVATION:"user/activation/",
-    RESET_PASSWORD:"user/resetpasswordpost/"
 
   },
 
