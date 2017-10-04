@@ -12,6 +12,7 @@ You must implement a form so that a user can contact the webmaster. The info mus
 You are welcomed to comment your code and make a beautiful responsive website.
 
 
-###Once you are finished you can push your branch on Github and send an email to chris@medgo.fr
+### Once you are finished
+You can push your branch on Github and send an email to chris@medgo.fr
 
-#Good luck !
+# Good luck !
