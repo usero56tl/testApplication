@@ -28,7 +28,7 @@ var ContactForm = React.createClass({
       dataType: 'json',
       type: 'POST',
       data:data,
-      success: function(dataCSFR) {
+      success: function(result) {
         //YOUR CODE GOES HERE
       },
       error: function(xhr, status, err) {
