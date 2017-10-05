@@ -1,6 +1,6 @@
 # Welcome
 
-This template uses Sails (Node.js) and ReactJs stacks. It is intended as a project starter for testing:
+This template uses Sails (http://sailsjs.com/) and ReactJs (https://reactjs.org/) stacks. It is intended as a project starter for testing:
 - [x] your motivation for joining an awesome startup :)
 - [x] your competence (either you master react and sails) or your ability to learn new technologies (or you don't)
 - [x] your code quality
